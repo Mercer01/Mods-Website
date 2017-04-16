@@ -32,12 +32,17 @@ CREATE TABLE modpacks (
 	
 CREATE TABLE mod_files (
 	ID SERIAL PRIMARY KEY,
-	modID SERIAL FOREIGN KEY,
-	fileID SERIAL FOREIGN KEY,
+	modID SERIAL,
+	fileID SERIAL,
 	createddate DATE,
-	modPackID SERIAL FOREIGN KEY
+	modPackID SERIAL
 	);
 
   
 INSERT INTO mods (modname, shortname,TYPE, size)
 	VALUES ('Red Hammer Studios:USAF','RHS:USAF','Content','10000000');
+
+INSERT INTO modpacks (name, size,Info,createddate)
+	VALUES ('@taw_am2_core','1000','core',current_timestamp);
+INSERT INTO modpacks (name, size,Info,createddate)
+	VALUES ('@taw_am2_corev2','1000','corev2',current_timestamp);

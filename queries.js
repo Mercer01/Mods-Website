@@ -16,7 +16,10 @@ module.exports = {
   getSingleMod: getSingleMod,
   createMod: createMod,
   updateMod: updateMod,
-  removeMod: removeMod
+  removeMod: removeMod,
+ 
+  //get All modpacks
+  getAllModpacks: getAllModpacks
 };
 
 function getAllMods(req, res, next) {
@@ -94,6 +97,21 @@ function removeMod(req, res, next) {
 	          message: `Removed ${result.rowCount} Mod`
 	        });
 	      /* jshint ignore:end */
+	    })
+	    .catch(function (err) {
+	      return next(err);
+	    });
+	}
+
+function getAllModpacks(req, res,next) {
+	db.any('select * from modpacks')
+	.then(function (data) {
+	      res.status(200)
+	        .json({
+	          status: 'success',
+	          data: data,
+	          message: 'Retrieved all modspacks'
+	        });
 	    })
 	    .catch(function (err) {
 	      return next(err);
