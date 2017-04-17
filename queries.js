@@ -117,3 +117,35 @@ function getAllModpacks(req, res,next) {
 	      return next(err);
 	    });
 	}
+
+
+function getFilesQueryTable(req, res,next) {
+	db.any('select files.filename, files.location, files.filesize, mods.shortname from mod_files inner join files on fileid = files.id inner join mods on modid = mods.id')
+	.then(function (data) {
+	      res.status(200)
+	        .json({
+	          status: 'success',
+	          data: data,
+	          message: 'Retrieved all files'
+	        });
+	    })
+	    .catch(function (err) {
+	      return next(err);
+	    });
+	}
+
+function getSingleMod(req, res, next) {
+	  var fileID = parseInt(req.params.id);
+	  db.one('select * from files where id = $1', fileID)
+	    .then(function (data) {
+	      res.status(200)
+	        .json({
+	          status: 'success',
+	          data: data,
+	          message: 'Retrieved ONE File'
+	        });
+	    })
+	    .catch(function (err) {
+	      return next(err);
+	    });
+	}
