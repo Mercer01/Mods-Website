@@ -3,8 +3,6 @@ var app = express();
 var db = require('../queries');
 var path = require('path')
 // node/common.js style 
-var logger = require('logger').createLogger(); // logs to STDOUT
-
 
 app.use(express.static(__dirname + '/public'));
 
@@ -15,9 +13,9 @@ app.post('/api/createMod', db.createMod);
 app.put('/api/updateMod/:id', db.updateMod);
 app.delete('/api/removeMod/:id', db.removeMod);
 
-//Modspacks get and request methods TODO Complete
+//Modpacks get and request methods TODO Complete
 app.get('/api/getAllModpacks', db.getAllModpacks)
 
-app.listen(3000);
+//app.listen(8000);
 
 module.exports = app;

@@ -7,8 +7,8 @@ CREATE DATABASE modsdb;
 
 CREATE TABLE mods (
   ID SERIAL PRIMARY KEY,
-  modname VARCHAR,
-  shortname VARCHAR,
+  mod_name VARCHAR,
+  short_name VARCHAR,
   type VARCHAR,
   size INTEGER
 );
@@ -16,13 +16,13 @@ CREATE TABLE mods (
 CREATE TABLE files (
 	ID	SERIAL PRIMARY KEY,
 	filename VARCHAR,
-	filesize INTEGER,
+	file_size INTEGER,
 	location VARCHAR,
 	createddate DATE
 	
 	);
 
-CREATE TABLE modpacks (
+CREATE TABLE mod_packs (
 	ID SERIAL PRIMARY KEY,
 	name VARCHAR,
 	size INT,
@@ -39,10 +39,10 @@ CREATE TABLE mod_files (
 	);
 
   
-INSERT INTO mods (modname, shortname,TYPE, size)
+INSERT INTO mods (mod_name, short_name,TYPE, size)
 	VALUES ('Red Hammer Studios:USAF','RHS:USAF','Content','10000000');
 
-INSERT INTO modpacks (name, size,Info,createddate)
+INSERT INTO mod_packs (name, size,Info,created_date)
 	VALUES ('@taw_am2_core','1000','core',current_timestamp);
-INSERT INTO modpacks (name, size,Info,createddate)
+INSERT INTO mod_ packs (name, size,Info,created_date)
 	VALUES ('@taw_am2_corev2','1000','corev2',current_timestamp);

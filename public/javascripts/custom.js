@@ -29,6 +29,17 @@
                     $('div.sidebar-collapse').removeClass('collapse')
                 }
             });
+            
+            /*Populate Correct names*/
+            $.getJson('localhost:8000/api/getAllModpacks')
+            
+            var count = Object.keys($.myObject).length;
+            var container= document.getElementById('main-menu'); // reference to containing elm
+            for(var i=0; i< count; i++){
+            	var obj = jsonObj.myObject[i];
+            	var left_bar = '<li><a href="index.html"><i class="fa fa-desktop "></i>'+ obj.name + '</a></li>'
+            	container.innerHTML+=left_bar;
+            }
 
           
      
