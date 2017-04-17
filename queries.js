@@ -110,7 +110,7 @@ function getAllModpacks(req, res,next) {
 	        .json({
 	          status: 'success',
 	          data: data,
-	          message: 'Retrieved all modspacks'
+	          message: 'Retrieved all modpacks'
 	        });
 	    })
 	    .catch(function (err) {

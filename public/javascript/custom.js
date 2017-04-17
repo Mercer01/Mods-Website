@@ -31,15 +31,25 @@
             });
             
             /*Populate Correct names*/
-            $.getJson('localhost:8000/api/getAllModpacks')
-            
-            var count = Object.keys($.myObject).length;
+            $.ajax({
+                url : 'api/getAllModpacks', 
+                dataType : 'json'
+            }).done(function (obj) {
+            var jsonobject = obj.data;
+            console.log(jsonobject)
+            var count = Object.keys(jsonobject).length;
             var container= document.getElementById('main-menu'); // reference to containing elm
+            console.log(jsonobject[0])
+            console.log(count)
             for(var i=0; i< count; i++){
-            	var obj = jsonObj.myObject[i];
+            	var obj = jsonobject[i];
+            	console.log(obj)
             	var left_bar = '<li><a href="index.html"><i class="fa fa-desktop "></i>'+ obj.name + '</a></li>'
             	container.innerHTML+=left_bar;
-            }
+            	}
+            });
+             
+   
 
           
      
