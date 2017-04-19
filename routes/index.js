@@ -13,6 +13,12 @@ app.post('/api/createMod', db.createMod);
 app.put('/api/updateMod/:id', db.updateMod);
 app.delete('/api/removeMod/:id', db.removeMod);
 
+
+//get Files
+
+//Repositories table
+app.get('/api/getAllRepositories',db.getAllRepositories)
+
 //Modpacks get and request methods TODO Complete
 app.get('/api/getAllModpacks', db.getAllModpacks)
 

@@ -18,9 +18,8 @@ CREATE TABLE files (
 	filename VARCHAR,
 	file_size INTEGER,
 	location VARCHAR,
-	createddate DATE
-	
-	);
+	createddate DATE	
+);
 
 CREATE TABLE mod_packs (
 	ID SERIAL PRIMARY KEY,
@@ -30,6 +29,22 @@ CREATE TABLE mod_packs (
 	Info Text
 );
 	
+CREATE TABLE repositories ( 
+	ID SERIAL PRIMARY KEY,
+	repository_name VARCHAR,
+	repository_size INT,
+	info Text,
+	
+	createddate DATE,
+	lastupdateddate DATE
+);
+
+CREATE TABLE repository_modpacks (
+	ID SERIAL PRIMARY KEY,
+	repository_id SERIAL,
+	modpack_id SERIAL
+);
+
 CREATE TABLE mod_files (
 	ID SERIAL PRIMARY KEY,
 	modID SERIAL,

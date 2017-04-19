@@ -1,3 +1,4 @@
+
 var promise = require('bluebird');
 
 var options = {
@@ -18,6 +19,9 @@ module.exports = {
   updateMod: updateMod,
   removeMod: removeMod,
  
+  //get Repositories
+  getAllRepositories: getAllRepositories,
+  
   //get All modpacks
   getAllModpacks: getAllModpacks
 };
@@ -102,7 +106,25 @@ function removeMod(req, res, next) {
 	      return next(err);
 	    });
 	}
+//TODO add repositories getters etc
+function getAllRepositories(req, res, next) {
+	db.any('select * from repositories')
+	.then(function (data) {
+		res.status(200)
+			.json({
+				status: 'sucess',
+				data: data,
+				message: 'Retrieved All repositories'
+			});
+		})
+		.catch(function(err) {
+			return next(err);
+		});
+	
+	}
 
+
+//TODO add Modpack data getters 
 function getAllModpacks(req, res,next) {
 	db.any('select * from modpacks')
 	.then(function (data) {
