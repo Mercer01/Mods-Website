@@ -32,26 +32,44 @@
             
             /*Populate Correct names*/
             $.ajax({
-                url : 'api/getAllModpacks', 
+                url : 'api/getAllRepositories', 
                 dataType : 'json'
             }).done(function (obj) {
             var jsonobject = obj.data;
             console.log(jsonobject)
             var count = Object.keys(jsonobject).length;
-            var container= document.getElementById('main-menu'); // reference to containing elm
-            console.log(jsonobject[0])
-            console.log(count)
+            var container= document.getElementById('main-menu'); // reference to containing elment
             for(var i=0; i< count; i++){
             	var obj = jsonobject[i];
-            	console.log(obj)
-            	var left_bar = '<li><a href="index.html"><i class="fa fa-desktop "></i>'+ obj.name + '</a></li>'
+            	console.log(i)
+            	var left_bar = '<li class="dropdown"><a href="#" id = '+ obj.repository_name +' class="dropdown-toggle" data-toggle="dropdown" >'+ obj.repository_name + '<span class="caret"></span></a></li>'
+            
             	container.innerHTML+=left_bar;
-            	}
-            });
-             
-   
+            	var subcontainer = document.getElementById(obj.repository_name)
+            	subcontainer.innerHTML += '<ul class="dropdown-menu" id = Submenu' + obj.repository_name +' role="menu">'
+            	
+            	//get Submenu (select modpacks in repository)
+            	$.ajax({
+            		url: 'api/getAllModpacksforRepository/' + obj.id,
+            		dataType: 'json'
+            	}).done(function (subobj) {
+            		var jsonsubObject = subobj.data;
+            		console.log(jsonsubObject)
+                    var count = Object.keys(jsonsubObject).length;
+            		var container = document.getElementById('Submenu' + obj.repository_name)
+            		console.log(container)
+            		for(var x = 0; x < count; x++){
+            			var Subobj = jsonsubObject[x]
+            			console.log(jsonsubObject[x])
 
-          
+            			var leftSubBar = '<li><a href="#">' + Subobj.name + '</a></li>'
+            			console.log(leftSubBar)
+            			
+            			container.innerHTML += leftSubBar;
+            		}	
+        		});
+        	}
+        });
      
         },
 

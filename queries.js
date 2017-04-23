@@ -21,6 +21,7 @@ module.exports = {
  
   //get Repositories
   getAllRepositories: getAllRepositories,
+  getAllModpacksForRepository: getAllModpacksforRepository, 
   
   //get All modpacks
   getAllModpacks: getAllModpacks
@@ -155,6 +156,24 @@ function getFilesQueryTable(req, res,next) {
 	      return next(err);
 	    });
 	}
+
+function getAllModpacksforRepository(req, res, next) {
+	  var repID = parseInt(req.params.id);
+	  db.any('select * from mod_packs where repositoryID = $1', repID)
+	    .then(function (data) {
+	      res.status(200)
+	        .json({
+	          status: 'success',
+	          data: data,
+	          message: 'Retrieved ONE Mod'
+	        });
+	    })
+	    .catch(function (err) {
+	      return next(err);
+	    });
+	}
+
+	
 
 function getSingleMod(req, res, next) {
 	  var fileID = parseInt(req.params.id);

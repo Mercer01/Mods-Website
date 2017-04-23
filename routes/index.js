@@ -15,7 +15,7 @@ app.delete('/api/removeMod/:id', db.removeMod);
 
 
 //get Files
-
+app.get('/api/getAllModpacksforRepository/:id', db.getAllModpacksForRepository)
 //Repositories table
 app.get('/api/getAllRepositories',db.getAllRepositories)
 
